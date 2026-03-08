@@ -47,7 +47,7 @@ require_once filePath(pathFiles("delete"));
     <meta name="description" content="Listado de animes, peliculas, series">
     <link rel="stylesheet" href="style.css">
 </head>
-<body data-theme="<?= $_SESSION["theme"] ?? config("theme") ?? "light" ?>">
+<body data-theme="<?= $_SESSION["theme"] ?? (!empty(config("theme")) ? config("theme") : "light") ?>">
     <div class="app">
         <header class="header">
             <div>
