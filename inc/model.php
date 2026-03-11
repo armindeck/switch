@@ -147,4 +147,13 @@ class model {
         $message = $result ? "Inicio sesión exitosamente" : "Fallo al iniciar sesión";
         return ["result" => $result, "message" => $message];
     }
+
+    public function auth(): bool {
+        return !empty($_SESSION["user"]) && !empty($_SESSION["token"]);
+    }
+
+    public function logout(): void {
+        unset($_SESSION["user"]);
+        unset($_SESSION["token"]);
+    }
 }
