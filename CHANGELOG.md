@@ -1,6 +1,6 @@
 # Historial de cambios
 
-## [2026/02/26] - v1.0.0 & v1.1.0
+## [2026-02-26 - 2026-03-11] - v1.0.0 & v1.1.0
 
 - Primera versión de la pagina
 - Se puede publicar, modificar y eliminar del listado
@@ -14,3 +14,4 @@
 - Ahora se puede cerrar sesión desde la entrada `logout`.
 - Ahora se puede ver el perfil `Dev`.
 - Ahora se muestra una pantalla de error `Dev`.
+- Ahora para poder crearse una cuenta o iniciar sesión hay que verificar el captcha.
