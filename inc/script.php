@@ -30,8 +30,10 @@ function filePath(string $path): string {
 function pathFiles(string $string): string {
     $routes = [
         "script" => "inc/script.php",
-        "add" => "inc/add.php",
-        "delete" => "inc/delete.php",
+        "add" => "inc/actions/add.php",
+        "delete" => "inc/actions/delete.php",
+        "login" => "inc/actions/login.php",
+        "register" => "inc/actions/register.php",
         "core" => "database/core.json",
         "config" => "database/config.json",
         "list" => "database/list.json",
@@ -160,18 +162,18 @@ function changeLanguage(string $language): void {
         
         if (!$in_list){
             message("error", language("no_access"));
-            redirect("./");
+            redirect(route());
         }
 
         $_SESSION["language"] = $language;
-        redirect("./");
+        redirect(route());
     }
 }
 
 function changeTheme(string $theme): void {
     if (!empty($theme)){
         $_SESSION["theme"] = secureString($theme);
-        redirect("./");
+        redirect(route());
     }
 }
 
@@ -231,3 +233,61 @@ function generatePin(array $cantidad = [4, 5, 7]): string {
 
     return $numeros;
 }
+
+
+function view(string $view, ?array $data = [], ?bool $extract = true): void {
+    $file = filePath("inc/views/$view-view.php");
+    
+    if (!file_exists($file)){
+        die("El archivo $view no existe!");
+    }
+
+    if(!empty($data) && $extract){
+        extract($data, EXTR_SKIP);
+    }
+
+    require $file;
+}
+
+function actions(string $action, ?array $data = []): void {
+    $file = filePath("inc/actions/$action.php");
+    
+    if (!file_exists($file)){
+        die("El archivo $action no existe!");
+    }
+
+    if(!empty($data)){
+        extract($data, EXTR_SKIP);
+    }
+
+    require $file;
+}
+
+function route(string $string = ""): string {
+	$s = trim($string);
+	
+	// Si es una URL absoluta válida (http(s)://...) o protocolo relativo (//dominio), devolver tal cual
+	if (filter_var($s, FILTER_VALIDATE_URL) || strpos($s, '//') === 0) {
+		return $s;
+	}
+
+	return path_directory() . $string;
+}
+
+
+function path_directory(): string {
+	$route = trim(get_slug(), "/");
+	if($route === "") { return "./"; }
+
+	// eliminar segmentos vacíos (por dobles slashes) y contar profundidad
+	$segments = array_values(array_filter(explode("/", $route), function($s) { return $s !== ""; }));
+
+	$count = count($segments);
+
+	// si sólo hay un segmento (ej. "page") seguimos en ./, si hay más, subimos niveles
+	if ($count <= 1) { return "./"; }
+
+	return str_repeat("../", $count - 1);
+}
+
+function get_slug(): string { return secureString($_GET["slug"] ?? ""); }
