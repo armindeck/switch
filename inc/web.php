@@ -23,40 +23,64 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
+// Profiles
+if (count($view_explode) == 2 && $view_explode[0] == "p"){
+    $view = "profile";
+    $user = $view_explode[1] ?? "";
+}
+
 switch ($view) {
     case "home":
+    case "profile":
         $list = read(pathFiles("list"));
-        actions("add", ["list" => $list]);
-        actions("delete", ["list" => $list]);
-        $data = ["model" => $model, "list" => $list];
+        actions("add", ["list" => $list, "model" => $model]);
+        actions("delete", ["list" => $list, "model" => $model]);
+        $data = [
+            "model" => $model,
+            "list" => $list,
+            "list_only" => $view == "home" ? $list["public"] ?? [] : $list["user"][$user ?? ""] ?? [],
+            "user" => $user ?? "",
+            "is_user_user" => isset($user) && $model->auth() && $_SESSION["user"] == $user,
+            "view" => $view
+        ];
+        if($view == "profile" && !isset($model->allUser()[$user])){
+            $view = "error";
+            $data = ["auth" => $model->auth(), "title" => "profile_not_found", "text" => "profile_not_found_searched"];
+        }
         break;
 
     case "login":
+        if($model->auth()){
+            redirect(route());
+        }
+
         $data = ["model" => $model];
         actions("login", $data);
         break;
 
     case "register":
+        if($model->auth()){
+            redirect(route());
+        }
+
         $data = ["model" => $model];
         actions("register", $data);
         break;
 
     case "logout":
-        $model->logout();
+        if($model->auth()){
+            $model->logout();
+        }
         redirect("./login");
+        break;
+
+    case "community":
+        $data = ["auth" => $model->auth(), "users" => $model->allUser()];
         break;
 
     default:
         $data = ["auth" => $model->auth()];
-
-        // Profiles
-        $exp = explode("/", $view);
-        if (count($exp) == 2 && $exp[0] == "p"){
-            $view = "profile";
-            $data = ["auth" => $model->auth(), "user" => $exp[1]];
-        } else {
-            $view = "error";
-        }
+        $view = "error";
         break;
 }
 
