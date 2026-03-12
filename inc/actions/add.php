@@ -25,6 +25,7 @@ SOFTWARE.
 
 if (isset($_POST["add"]) || !empty($_POST["add"])){
     $title = secureString($_POST["title"] ?? "");
+    $url = htmlspecialchars($_POST["url"] ?? "", ENT_QUOTES, 'UTF-8');
     $episode = secureString($_POST["episode"] ?? "");
     $episodes = secureString($_POST["episodes"] ?? "");
     $season = secureString($_POST["season"] ?? "");
@@ -34,7 +35,12 @@ if (isset($_POST["add"]) || !empty($_POST["add"])){
 
     if (empty($title) || empty($episode) || empty($state) || empty($type)){
         message("error", language("fill_required"));
-        $_SESSION["tmp_form"] = array_post($title, $episode, $episodes, $season, $state, $type);
+        $_SESSION["tmp_form"] = array_post($title, $url, $episode, $episodes, $season, $state, $type);
+        redirect(route($to_user ? "p/" . $_SESSION["user"] : ""));
+    }
+
+    if (filter_var($_POST["url"] ?? "", FILTER_VALIDATE_URL) === false) {
+        message("error", language("error"));
         redirect(route($to_user ? "p/" . $_SESSION["user"] : ""));
     }
 
@@ -42,9 +48,9 @@ if (isset($_POST["add"]) || !empty($_POST["add"])){
     $search = $to_user ? isset($list["user"][$_SESSION["user"]][$id]) : isset($list["public"][$id]);
     
     if($to_user){
-        $list["user"][$_SESSION["user"]][$id] = array_post($title, $episode, $episodes, $season, $state, $type);
+        $list["user"][$_SESSION["user"]][$id] = array_post($title, $url, $episode, $episodes, $season, $state, $type);
     } else {
-        $list["public"][$id] = array_post($title, $episode, $episodes, $season, $state, $type);
+        $list["public"][$id] = array_post($title, $url, $episode, $episodes, $season, $state, $type);
     }
 
     $confirm = write(pathFiles("list"), $list);
