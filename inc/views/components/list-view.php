@@ -17,7 +17,7 @@
         <tbody>
             <?php $i = 1; foreach (array_reverse($list_only) as $key => $value): ?>
             <tr <?= $i % 2 == 0 ? "style='background:rgb(0,0,0,.1);'" : ""  ?>>
-                <td><?= $value["title"] ?? "" ?></td>
+                <td><?= !empty($value["url"]) ? "<a title=\"" . language("external_disclaimer") . "\" target=\"_blank\" href=\"{$value['url']}\" rel=\"noopener noreferrer\">" : "" ?><?= $value["title"] ?? "" ?><?= !empty($value["url"]) ? "</a>" : "" ?></td>
                 <td><?= $value["episode"] ?? "" ?></td>
                 <td><?= $value["episodes"] ?? "" ?></td>
                 <td><?= $value["season"] ?? "" ?></td>
