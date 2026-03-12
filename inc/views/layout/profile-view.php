@@ -23,11 +23,18 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-view("components/header", ["auth" => $auth]);
+view("components/header", ["auth" => $model->auth(), "view" => $view]);
 ?>
     <main class="main">
         <?php view("components/message"); ?>
-        <h3><?= language("profile") ?></h3>
-        <p>Wellcome <?= $user ?></p>
+        <div class="content">
+            <h2 style="text-align: center;"><?= $model->allUser()[$user]["name"] ?></h2>
+        </div>
+        <hr>
+        <?php if($is_user_user){
+            view("components/form-add", ["list_only" => $list_only, "user" => $user ?? false, "is_user_user" => $is_user_user ?? false]);
+            echo "<hr>";
+        }?>
+        <?php view("components/list", ["list_only" => $list_only, "user" => $user ?? false, "is_user_user" => $is_user_user ?? false]); ?>
     </main>
-<?php view("components/footer") ?>
+<?php view("components/footer"); ?>
