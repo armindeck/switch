@@ -44,5 +44,8 @@
     "page_not_found": {"es": "No se encuentra la página solicitada", "en": "The requested page is not found"},
     "logout": {"es": "Cerrar sesión", "en": "Logout"},
     "error": {"es": "Error", "en": "Error"},
-    "community": {"es": "Comunidad", "en": "Community"}
+    "community": {"es": "Comunidad", "en": "Community"},
+    "optional": {"es": "Opcional", "en": "optional"},
+    "url": {"es": "URL", "en": "URL"},
+    "external_disclaimer": {"es": "No me hago responsable por el contenido externo del enlace", "en": "I am not responsible for the external link content"}
 }
