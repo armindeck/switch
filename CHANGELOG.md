@@ -18,3 +18,4 @@
 - Ahora el usuario puede tener su propio listado.
 - Esta disponible el apartado comunidad.
 - Se puede ver los listados de los demas usuarios.
+- Ahora se pueden agregar enlaces de referencias. (No me hago responsable por los enlaces externos)
