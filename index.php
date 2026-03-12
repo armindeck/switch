@@ -29,6 +29,8 @@ require_once __DIR__ . "/inc/model.php"; // Model
 
 $slug = secureString($_GET["slug"] ?? "home");
 $view = $slug;
+$view_explode = explode("/", $view);
+define("RAIZ", __DIR__ . "/");
 
 changeLanguage($_GET["language"] ?? ""); // Change Language
 changeTheme($_GET["theme"] ?? ""); // Change Theme
