@@ -23,13 +23,20 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-if (isset($_GET["action"]) && $_GET["action"] == "delete" && !empty($list) && isset($_GET["id"]) && isset($list[$_GET["id"]])){
+if (isset($_GET["action"]) && $_GET["action"] == "delete" && !empty($list) && isset($_GET["id"])){
     $id = secureString($_GET["id"] ?? "");
-    $search = in_array($id, $list);
+    $to_user = isset($_GET["to_user"]) && !empty($_GET["to_user"]) && $model->auth();
 
-    unset($list[$id]);
+    $search = $to_user ? isset($list["user"][$_SESSION["user"]][$id]) : isset($list["public"][$id]);
+    if($search){
+        if($to_user){
+            unset($list["user"][$_SESSION["user"]][$id]);
+        } else {
+            unset($list["public"][$id]);
+        }
 
-    $confirm = write(pathFiles("list"), $list);
-    message($confirm ? "success" : "error", language($confirm ? "deleted" : "fail"));
-    redirect("./");
+        $confirm = write(pathFiles("list"), $list);
+        message($confirm ? "success" : "error", language($confirm ? "deleted" : "fail"));
+        redirect(route($to_user ? "p/" . $_SESSION["user"] : ""));
+    }
 }
