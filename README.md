@@ -8,6 +8,9 @@ Aplicación web PHP ligera para administración y visualización de una colecci�
 - Modificar anime, pelicula, ova, etc
 - Eliminar anime, pelicula, ova, etc
 - Cambio de idioma (español, ingles)
+- Crear cuenta e iniciar sesión
+- Cambio de temas e idiomas
+- El usuario puede crear su propio listado
 
 ## ⚙ Configurar hCaptcha
 - Agregar la clave secreta en [captcha.php](./inc/captcha.php)
