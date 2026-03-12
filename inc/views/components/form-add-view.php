@@ -27,6 +27,7 @@ SOFTWARE.
 <form method="post" class="form" id="formProcess">
     <h3><?= language(getListValueGetTmp($list_only, "id", "title") ? "edit" : "add") ?></h3>
     <input type="text" name="title" id="title" placeholder="<?= language("title") ?>" value="<?= getListValueGetTmp($list_only, "id", "title") ?>" required>
+    <input type="url" name="url" id="url" placeholder="<?= language("url") . " (". language("optional") .")" ?>" value="<?= getListValueGetTmp($list_only, "id", "url") ?>">
     <hgroup class="flex flex-wrap flex-between gap-4">
         <input type="number" name="episode" id="episode" class="mini" placeholder="<?= language("episode") ?>" value="<?= getListValueGetTmp($list_only, "id", "episode") ?>" min="0" required>
         <input type="number" name="episodes" id="episodes" class="mini" placeholder="<?= language("episodes") ?>" value="<?= getListValueGetTmp($list_only, "id", "episodes") ?>" min="0">
