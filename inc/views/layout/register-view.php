@@ -28,10 +28,10 @@ view("components/header", ["auth" => $model->auth()]);
     <main class="main">
         <?php view("components/message"); ?>
         <form method="post" class="form" id="formProcess">
-            <h3><?= language("register") ?></h3>
+            <h3><?= language("register") ?> - <a href="<?= route("login") ?>"><?= language("login") ?></a></h3>
             <input type="text" name="user" id="user" placeholder="<?= language("user") ?>" minlength="4" maxlength="25" required>
             <input type="text" name="name" id="name" placeholder="<?= language("name") ?>" minlength="4" maxlength="25" required>
-            <input type="text" name="email" id="email" placeholder="<?= language("email") ?>" minlength="4" maxlength="150" required>
+            <input type="email" name="email" id="email" placeholder="<?= language("email") ?>" minlength="4" maxlength="150" required>
             <input type="password" name="password" id="password" placeholder="<?= language("password") ?>" minlength="8" maxlength="150" required>
             <input type="password" name="confirm_password" id="confirm_password" placeholder="<?= language("confirm_password") ?>" minlength="8" maxlength="150" required>
             <?php view("components/captcha") ?>
