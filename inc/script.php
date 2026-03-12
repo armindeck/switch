@@ -58,9 +58,10 @@ function secureStringFile(string $string): string {
     return $string;
 }
 
-function array_post(string $title, int|string $episode, int|string $episodes, int|string $season, string $state, string $type): array {
+function array_post(string $title, string $url, int|string $episode, int|string $episodes, int|string $season, string $state, string $type): array {
     return [
         "title" => $title,
+        "url" => $url,
         "episode" => $episode,
         "episodes" => $episodes,
         "season" => $season,
