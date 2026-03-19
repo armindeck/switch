@@ -133,7 +133,7 @@ hr {
     cursor: pointer;
     color: var(--header-button-co);
     background-color: transparent;
-    padding: 6px 8px 6px 2px;
+    padding: 6px 8px 6px 2px !important;
 }
 
 .header label:hover,
@@ -164,7 +164,7 @@ hr {
     padding: 8px 12px;
 }
 
-input, button {
+input, button, select {
     padding: 6px 8px;
 }
 
