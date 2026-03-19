@@ -19,3 +19,4 @@
 - Esta disponible el apartado comunidad.
 - Se puede ver los listados de los demas usuarios.
 - Ahora se pueden agregar enlaces de referencias. (No me hago responsable por los enlaces externos)
+- Ahora el listado en el perfil estara ordenado por (Viendo, Espera, Finalizado)
