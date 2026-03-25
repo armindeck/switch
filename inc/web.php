@@ -48,6 +48,28 @@ switch ($view) {
             $data = ["auth" => $model->auth(), "title" => "profile_not_found", "text" => "profile_not_found_searched"];
         }
         break;
+        
+    case "happy":
+        if(!$model->auth()){ redirect(route("login")); }
+        redirect(route("error"));
+        
+        // Desarrollo
+        $list = read(pathFiles("happy"));
+        actions("add", ["list" => $list, "model" => $model]);
+        actions("delete", ["list" => $list, "model" => $model]);
+        $data = [
+            "model" => $model,
+            "list" => $list,
+            "list_only" => $view == "home" ? $list["public"] ?? [] : $list["user"][$user ?? ""] ?? [],
+            "user" => $user ?? "",
+            "is_user_user" => isset($user) && $model->auth() && $_SESSION["user"] == $user,
+            "view" => $view
+        ];
+        if($view == "profile" && !isset($model->allUser()[$user])){
+            $view = "error";
+            $data = ["auth" => $model->auth(), "title" => "profile_not_found", "text" => "profile_not_found_searched"];
+        }
+        break;
 
     case "login":
         if($model->auth()){
