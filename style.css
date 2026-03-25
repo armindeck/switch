@@ -239,13 +239,13 @@ td {
 
 .button {
     color: white;
-    background-color: #F4320B;
+    background-color: purple;
 }
 
 .button:hover,
 .button--active {
     color: white;
-    background-color: #F54927;
+    background-color: rgb(165, 0, 165);
 }
 
 .button-transparent {
@@ -256,7 +256,36 @@ td {
 .button-transparent:hover,
 .button-transparent--active {
     color: white;
-    background-color: #F54927;
+    background-color: rgb(165, 0, 165);
+}
+
+.button-switch-content {
+    display: flex;
+    flex-direction: row;
+    gap: 0;
+    background-color: #ebebeb;
+    overflow: hidden;
+    border: 1px solid rgb(0,0,0,.1);
+    border-radius: 4px;
+}
+
+.button-switch-content a {
+    padding: 8px 6px;
+    color: initial;
+    background-color: transparent;
+    text-decoration: none;
+}
+
+.button-switch-content a.active {
+    color: white;
+    background-color: purple;
+}
+
+
+.button-switch-content a.active:hover,
+.button-switch-content a:hover {
+    color: white;
+    background-color: rgb(165, 0, 165);
 }
 
 .flex { display: flex; }
