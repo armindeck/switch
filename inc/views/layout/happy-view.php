@@ -28,8 +28,10 @@ view("components/header", ["auth" => $model->auth()]);
     <main class="main">
         <?php view("components/message"); ?>
         <div class="content">
-            <a href="./" class="button-transparent">AniPelis</a>
-            <a href="happy" class="button">Happy</a>
+            <div class="button-switch-content">
+                <a href="<?= route() ?>"><?= config("app_name") ?></a>
+                <a href="<?= route("happy") ?>" class="active">Happy</a>
+            </div>
         </div>
         <form class="form" method="post">
             <h2>Fechas de nacimiento</h2>

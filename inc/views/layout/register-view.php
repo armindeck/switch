@@ -27,8 +27,13 @@ view("components/header", ["auth" => $model->auth()]);
 ?>
     <main class="main">
         <?php view("components/message"); ?>
+        <div class="content">
+            <div class="button-switch-content">
+                <a href="<?= route("login") ?>"><?= language("login") ?></a>
+                <a href="<?= route("register") ?>" class="active"><?= language("register") ?></a>
+            </div>
+        </div>
         <form method="post" class="form" id="formProcess">
-            <h3><?= language("register") ?> - <a href="<?= route("login") ?>"><?= language("login") ?></a></h3>
             <input type="text" name="user" id="user" placeholder="<?= language("user") ?>" minlength="4" maxlength="25" required>
             <input type="text" name="name" id="name" placeholder="<?= language("name") ?>" minlength="4" maxlength="25" required>
             <input type="email" name="email" id="email" placeholder="<?= language("email") ?>" minlength="4" maxlength="150" required>
