@@ -1,4 +1,8 @@
 {
+    "languages": {"es": "Idiomas", "en": "Languages"},
+    "themes": {"es": "Temas", "en": "themes"},
+    "config": {"es": "Configuración", "en": "Config"},
+    "header.config": {"es": "Config", "en": "Config"},
     "name": {"es": "Nombre", "en": "Name"},
     "email": {"es": "Email", "en": "Email"},
     "account": {"es": "Cuenta", "en": "Account"},
