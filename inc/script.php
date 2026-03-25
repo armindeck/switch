@@ -294,3 +294,32 @@ function path_directory(): string {
 }
 
 function get_slug(): string { return secureString($_GET["slug"] ?? ""); }
+
+function month(string $string): string {
+    return match ($string) {
+        "01" => "Enero",
+        "02" => "Febrero",
+        "03" => "Marzo",
+        "04" => "Abril",
+        "05" => "Mayo",
+        "06" => "Junio",
+        "07" => "Julio",
+        "08" => "Agosto",
+        "09" => "Septiembre",
+        "10" => "Octubre",
+        "11" => "Noviembre",
+        "12" => "Diciembre",
+        default => "Indefinido"
+    };
+}
+
+function strDate(string $date): string {
+    $date = explode("-", $date);
+    $string = substr($date[2], 0, 1) == 0 ? substr($date[2], 1) : $date[2]; // Day
+    $string .= " de ";
+    $string .= strtolower(month($date[1])); // Month
+    $string .= " del ";
+    $string .= $date[0]; // Year
+
+    return $string;
+}
