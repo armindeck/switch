@@ -230,6 +230,35 @@ td {
     display: none;
 }
 
+.button,
+.button-transparent {
+    display: inline-block;
+    padding: 8px 6px;
+    border-radius: 4px;
+}
+
+.button {
+    color: white;
+    background-color: #F4320B;
+}
+
+.button:hover,
+.button--active {
+    color: white;
+    background-color: #F54927;
+}
+
+.button-transparent {
+    color: initial;
+    background-color: transparent;
+}
+
+.button-transparent:hover,
+.button-transparent--active {
+    color: white;
+    background-color: #F54927;
+}
+
 .flex { display: flex; }
 
 .flex-evenly { justify-content: space-evenly; }
