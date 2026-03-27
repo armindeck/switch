@@ -26,6 +26,8 @@ SOFTWARE.
 session_start();
 require_once __DIR__ . "/inc/script.php"; // Scripts
 require_once __DIR__ . "/inc/model.php"; // Model
+require_once __DIR__ . "/inc/captcha.php"; // Captcha
+require_once __DIR__ . "/inc/actions.php"; // Actions
 
 $slug = secureString($_GET["slug"] ?? "home");
 $view = $slug;
@@ -35,10 +37,6 @@ define("RAIZ", __DIR__ . "/");
 changeLanguage($_GET["config"] ?? ""); // Change Language
 changeTheme($_GET["config"] ?? ""); // Change Theme
 $model = new model;
-//$model->newUser("admin", "Admin", "admin@example.com", "1234567890");
-//$model->login("admin", "1234567890");
-//$model->logout();
-
 date_default_timezone_set("America/Bogota");
 
 require_once __DIR__ . '/inc/web.php';
