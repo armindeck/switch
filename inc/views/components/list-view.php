@@ -9,6 +9,7 @@
                 <td><?= language("season") ?></td>
                 <td><?= language("state") ?></td>
                 <td><?= language("type") ?></td>
+                <td><?= language("stars") ?></td>
                 <?php if(!$user || $user && $is_user_user): ?>
                 <td><?= language("action") ?></td>
                 <?php endif; ?>
@@ -23,6 +24,7 @@
                 <td><?= $value["season"] ?? "" ?></td>
                 <td><?= language($value["state"] ?? "") ?></td>
                 <td><?= language($value["type"] ?? "") ?></td>
+                <td><?= !empty($value["stars"]) ? $value["stars"] . " / 5" : "" ?></td>
                 <?php if(!$user || $user && $is_user_user): ?>
                     <td class="flex flex-between gap-4">
                         <a href="?id=<?= $key ?? "" ?>&action=edit<?= $user ? "&to_user=true" : "" ?>">📝</a>

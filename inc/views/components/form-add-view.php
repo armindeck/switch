@@ -54,6 +54,18 @@ SOFTWARE.
                 <option value="<?= $key ?>" <?= $key == "" ? 'class="option_title"' : '' ?> <?= getListValueGetTmp($list_only, "id", "type") == $key ? "selected" : "" ?>><?= language($value) ?></option>
             <?php endforeach; ?>
         </select>
+        <select name="stars" id="stars">
+            <?php foreach ([
+                "" => "stars",
+                "1" => "1",
+                "2" => "2",
+                "3" => "3",
+                "4" => "4",
+                "5" => "5"
+                ] as $key => $value): ?>
+                <option value="<?= $key ?>" <?= $key == "" ? 'class="option_title"' : '' ?> <?= getListValueGetTmp($list_only, "id", "stars") == $key ? "selected" : "" ?>><?= language($value) ?></option>
+            <?php endforeach; ?>
+        </select>
     </hgroup>
     <?php if($user ?? false): ?>
         <input type="checkbox" name="to_user" id="to_user" checked required hidden>

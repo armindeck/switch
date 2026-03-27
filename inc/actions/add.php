@@ -31,11 +31,12 @@ if (isset($_POST["add"]) || !empty($_POST["add"])){
     $season = secureString($_POST["season"] ?? "");
     $state = secureString($_POST["state"] ?? "");
     $type = secureString($_POST["type"] ?? "");
+    $stars = secureString($_POST["stars"] ?? "");
     $to_user = isset($_POST["to_user"]) && !empty($_POST["to_user"]) && $model->auth();
 
     if (empty($title) || empty($episode) || empty($state) || empty($type)){
         message("error", language("fill_required"));
-        $_SESSION["tmp_form"] = array_post($title, $url, $episode, $episodes, $season, $state, $type);
+        $_SESSION["tmp_form"] = array_post(title: $title, url: $url, episode: $episode, episodes: $episodes, season: $season, state: $state, type: $type, stars: $stars);
         redirect(route($to_user ? "p/" . $_SESSION["user"] : ""));
     }
 
@@ -48,9 +49,9 @@ if (isset($_POST["add"]) || !empty($_POST["add"])){
     $search = $to_user ? isset($list["user"][$_SESSION["user"]][$id]) : isset($list["public"][$id]);
     
     if($to_user){
-        $list["user"][$_SESSION["user"]][$id] = array_post($title, $url, $episode, $episodes, $season, $state, $type);
+        $list["user"][$_SESSION["user"]][$id] = array_post(title: $title, url: $url, episode: $episode, episodes: $episodes, season: $season, state: $state, type: $type, stars: $stars);
     } else {
-        $list["public"][$id] = array_post($title, $url, $episode, $episodes, $season, $state, $type);
+        $list["public"][$id] = array_post(title: $title, url: $url, episode: $episode, episodes: $episodes, season: $season, state: $state, type: $type, stars: $stars);
     }
 
     $confirm = write(pathFiles("list"), $list);
