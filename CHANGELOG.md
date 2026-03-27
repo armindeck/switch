@@ -22,3 +22,4 @@
 - Ahora el listado en el perfil estara ordenado por (Viendo, Espera, Finalizado)
 - Ahora las configuraciones estaran en un solo menu desplegable
 - El proyecto se esta ampliando para una serie de herramientas que serviran para otras cosas
+- Ahora se les puede agregar la cantidad de estrellas (puntaje) a cada elemento
