@@ -1,4 +1,4 @@
-# anipelis - MIT License - (c) 2026 Armin Deck - https://github.com/armindeck/anipelis
+# switch - MIT License - (c) 2026 Armin Deck - https://github.com/armindeck/switch
 
 # ================================
 # Configuración de errores y entorno
@@ -35,8 +35,8 @@ Options -Indexes
 # ================================
 RewriteEngine On
 
-# Permitir acceso directo a /assets y /process
-RewriteCond %{REQUEST_URI} ^/(assets|process)/ [NC]
+# Permitir acceso directo a /assets
+RewriteCond %{REQUEST_URI} ^/(assets)/ [NC]
 RewriteRule ^ - [L]
 
 # Redirigir todo lo demás a index.php (router)
@@ -47,9 +47,9 @@ RewriteRule ^(.*)$ index.php?slug=$1 [L,QSA]
 # ================================
 # Errores personalizados
 # ================================
-ErrorDocument 400 /anipelis/index.php?slug=error/400
-ErrorDocument 401 /anipelis/index.php?slug=error/401
-ErrorDocument 403 /anipelis/index.php?slug=error/403
-ErrorDocument 404 /anipelis/index.php?slug=error/404
-ErrorDocument 500 /anipelis/index.php?slug=error/500
-ErrorDocument 503 /anipelis/index.php?slug=error/503
+ErrorDocument 400 /switch/index.php?slug=error/400
+ErrorDocument 401 /switch/index.php?slug=error/401
+ErrorDocument 403 /switch/index.php?slug=error/403
+ErrorDocument 404 /switch/index.php?slug=error/404
+ErrorDocument 500 /switch/index.php?slug=error/500
+ErrorDocument 503 /switch/index.php?slug=error/503
