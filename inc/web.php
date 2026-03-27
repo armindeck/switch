@@ -23,6 +23,8 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
+$actions = new Actions\Actions;
+
 // Profiles
 if (count($view_explode) == 2 && $view_explode[0] == "p"){
     $view = "profile";
@@ -33,8 +35,8 @@ switch ($view) {
     case "home":
     case "profile":
         $list = read(pathFiles("list"));
-        actions("add", ["list" => $list, "model" => $model]);
-        actions("delete", ["list" => $list, "model" => $model]);
+        $actions->addListAniPelis($list, $model);
+        $actions->deleteListAniPelis($list, $model);
         $data = [
             "model" => $model,
             "list" => $list,
@@ -49,44 +51,31 @@ switch ($view) {
         }
         break;
         
-    case "happy":
+    case "birthday":
         if(!$model->auth()){ redirect(route("login")); }
-        redirect(route("error"));
         
-        // Desarrollo
-        $list = read(pathFiles("happy"));
-        actions("add", ["list" => $list, "model" => $model]);
-        actions("delete", ["list" => $list, "model" => $model]);
+        $list = read(pathFiles("birthday"));
+        $actions->addBirthday($list);
+        $actions->deleteBirthday($list);
         $data = [
             "model" => $model,
             "list" => $list,
-            "list_only" => $view == "home" ? $list["public"] ?? [] : $list["user"][$user ?? ""] ?? [],
-            "user" => $user ?? "",
-            "is_user_user" => isset($user) && $model->auth() && $_SESSION["user"] == $user,
+            "list_only" => $list[$_SESSION["user"]] ?? [],
+            "user" => $_SESSION["user"],
             "view" => $view
         ];
-        if($view == "profile" && !isset($model->allUser()[$user])){
-            $view = "error";
-            $data = ["auth" => $model->auth(), "title" => "profile_not_found", "text" => "profile_not_found_searched"];
-        }
         break;
 
     case "login":
-        if($model->auth()){
-            redirect(route());
-        }
-
+        if($model->auth()){ redirect(route()); }
         $data = ["model" => $model];
-        actions("login", $data);
+        $actions->login(new inc\Captcha, $model);
         break;
 
     case "register":
-        if($model->auth()){
-            redirect(route());
-        }
-
+        if($model->auth()){ redirect(route()); }
         $data = ["model" => $model];
-        actions("register", $data);
+        $actions->register(new inc\Captcha, $model);
         break;
 
     case "logout":
