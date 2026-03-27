@@ -29,8 +29,8 @@ view("components/header", ["auth" => $model->auth()]);
         <?php view("components/message"); ?>
         <div class="content">
             <div class="button-switch-content">
-                <a href="<?= route() ?>" class="active"><?= config("app_name") ?></a>
-                <a href="<?= route("happy") ?>">Happy</a>
+                <a href="<?= route() ?>" class="active">AniPelis</a>
+                <a href="<?= route("birthday") ?>"><?= language("birthday") ?></a>
             </div>
         </div>
         <?php view("components/form-add", ["list_only" => $list_only, "user" => $user ?? false]); ?>
