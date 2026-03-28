@@ -31,6 +31,7 @@ view("components/header", ["auth" => $model->auth()]);
             <div class="button-switch-content">
                 <a href="<?= route() ?>">AniPelis</a>
                 <a href="<?= route("birthday") ?>" class="active"><?= language("birthday") ?></a>
+                <a href="<?= route("goals") ?>"><?= language("goals") ?></a>
             </div>
         </div>
         <form class="form" method="post">
@@ -50,8 +51,8 @@ view("components/header", ["auth" => $model->auth()]);
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($list_only as $key => $value): ?>
-                    <tr>
+                    <?php $i = 1; foreach ($list_only as $key => $value): ?>
+                    <tr <?= $i % 2 == 0 ? "style='background:rgb(0,0,0,.1);'" : ""  ?>>
                         <td><?= $value["name"] ?></td>
                         <td title="<?= $value["date"] ?>"><?= strDate($value["date"]) ?></td>
                         <td>
@@ -59,7 +60,7 @@ view("components/header", ["auth" => $model->auth()]);
                             <a href="?action=delete&id=<?= $key ?>&confirm=1" onclick="return confirm('Quieres eliminar los datos de <?= $value["name"] ?>');">❌</a>
                         </td>
                     </tr>
-                    <?php endforeach ?>
+                    <?php $i++; endforeach ?>
                 </tbody>
             </table>
         </div>
