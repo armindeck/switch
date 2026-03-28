@@ -31,6 +31,7 @@ view("components/header", ["auth" => $model->auth()]);
             <div class="button-switch-content">
                 <a href="<?= route() ?>" class="active">AniPelis</a>
                 <a href="<?= route("birthday") ?>"><?= language("birthday") ?></a>
+                <a href="<?= route("goals") ?>"><?= language("goals") ?></a>
             </div>
         </div>
         <?php view("components/form-add", ["list_only" => $list_only, "user" => $user ?? false]); ?>
