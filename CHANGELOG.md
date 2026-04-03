@@ -26,3 +26,4 @@
 - Nuevo apartado para guardar las fechas de nacimiento de los familiares (No se comparten con nadie, es privado del usuario).
 - Cambio de nombre/repositio de AniPelis por Switch
 - Nuevo apartado de Objetivos (metas) privado
+- Nuevos efectos para la pagina
