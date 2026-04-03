@@ -38,10 +38,22 @@ SOFTWARE.
 	<script src="https://js.hcaptcha.com/1/api.js" async defer></script>
 </head>
 <body data-theme="<?= $_SESSION["theme"] ?? (!empty(config("theme")) ? config("theme") : "light") ?>">
+    <div class="lines">
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+    </div>
     <div class="app">
         <header class="header">
             <div>
-                <h2><?= config("app_name") ?? core("name") ?></h2>
+                <h2 class="gradient-text"><?= config("app_name") ?? core("name") ?></h2>
             </div>
             <nav>
                 <a href="<?= route() ?>">🏠 <?= language("home") ?></a>
